@@ -31,41 +31,23 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       data.students.forEach((student: any) =>
         student.courses.forEach((course: any) =>
-          course.exams.forEach((exam: any) => dateList.add(`${course.id},${exam.date}`))
+          course.exams.forEach((exam: any) =>
+            dateList.add(`${course.id},${exam.date}`)
+          )
         )
       );
 
-      return res.status(200).send({ info: Array.from(dateList.values())});
+      return res.status(200).send({ info: Array.from(dateList.values()) });
     }
     case "POST": {
       const { date } = req.body;
-      const foundExam = await prisma.exam.findFirst({
-        where: {
+      
+      const exam = await prisma.exam.create({
+        data: {
           date: date as string,
+          courseId: id as string,
         },
       });
-
-
-      let exam = null;
-      if (foundExam) {
-        exam = await prisma.exam.update({
-          where: {
-            id: foundExam.id as string,
-          },
-          data: {
-            date: date as string,
-          },
-        });
-        
-      } else {
-        exam = await prisma.exam.create({
-          data: {
-            date: date as string,
-            courseId: id as string,
-          },
-        });
-
-      }
 
       return res.status(200).send(exam);
     }
