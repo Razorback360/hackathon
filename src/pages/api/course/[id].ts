@@ -13,7 +13,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         },
         include: {
           students: {
-            exams: {
+            courses: {
+              exams:{
               select: {
                 date: true,
               },
