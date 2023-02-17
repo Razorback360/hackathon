@@ -13,6 +13,7 @@ datasource db {
 model Student {
   id      String   @id @default(uuid())
   courses Course[]
+  exams   Exam[]
 }
 
 model Course {
@@ -33,10 +34,11 @@ model Manager {
 }
 
 model Exam {
-  id        String   @id @default(uuid())
+  id        String    @id @default(uuid())
   date      DateTime
-  course    Course   @relation(fields: [courseId], references: [id])
-  manager   Manager  @relation(fields: [managerId], references: [id])
+  student   Student[]
+  course    Course    @relation(fields: [courseId], references: [id])
+  manager   Manager   @relation(fields: [managerId], references: [id])
   courseId  String
   managerId String
 }
