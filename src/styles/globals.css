@@ -3,3 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities{
+    .bg-image {
+        background: url("../../public/background-image.jpeg") no-repeat center center fixed;
+        background-size: cover;
+        background-color: #3c4a3e;
+        fill-opacity: 0.5;
+        fill: #3c4a3e;
+    }
+    
+}
+.checkbox:checked:before{
+    background-color:green;
+    }
+
