@@ -4,7 +4,7 @@ import { Transition } from '@headlessui/react';
 import { EyeIcon, EyeSlashIcon, AtSymbolIcon } from '@heroicons/react/24/outline'
 
 
-function App() {
+function Login() {
   const [showPassword, setShowPassword] = useState(false);
   const [keepMeSignedIn, setKeepMeSignedIn] = useState(false);
   const [email, setEmail] = useState('');
@@ -13,8 +13,7 @@ function App() {
   const handleLogin = () => {
     // handle login logic here
   };
-
-  return (
+  return(
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-500 to-teal-300">
       <img src="/Hexagon.png" alt="Background Image" className="w-full h-full object-cover absolute inset-0" />
       <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-md">
@@ -82,9 +81,7 @@ function App() {
         </form>
       </div>
     </div>
-    
+    )
+};
 
-  );
-}
-
-export default App;
+export default Login;
