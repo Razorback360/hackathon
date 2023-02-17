@@ -51,7 +51,19 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       return res.status(200).send(exam);
     }
+    case "DELETE": {
+      const { examId } = req.body;
+      
+      const exam = await prisma.exam.delete({
+        where: {
+          id: examId as string
+        }
+      });
+
+      return res.status(200).send(exam);
+    }
   }
+  
 };
 
 export default handler;
