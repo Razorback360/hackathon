@@ -32,9 +32,8 @@ model Manager {
 }
 
 model Exam {
-  id        String    @id @default(uuid())
-  date      String
-  course    Course    @relation(fields: [courseId], references: [id])
-  courseId  String
-  managerId String
+  id       String @id @default(uuid())
+  date     String
+  course   Course @relation(fields: [courseId], references: [id])
+  courseId String
 }

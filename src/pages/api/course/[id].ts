@@ -31,19 +31,20 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       data.students.forEach((student: any) =>
         student.courses.forEach((course: any) =>
-          course.exams.forEach((exam: any) => dateList.add(exam.date))
+          course.exams.forEach((exam: any) => dateList.add(`${course.id},${exam.date}`))
         )
       );
-      console.log(dateList.values());
-      return res.status(200).send({ dates: Array.from(dateList.values()) });
+
+      return res.status(200).send({ info: Array.from(dateList.values())});
     }
     case "POST": {
       const { date } = req.body;
       const foundExam = await prisma.exam.findFirst({
         where: {
-          date: date,
+          date: date as string,
         },
       });
+
 
       let exam = null;
       if (foundExam) {
@@ -52,20 +53,21 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
             id: foundExam.id as string,
           },
           data: {
-            date: date,
+            date: date as string,
           },
         });
+        
       } else {
         exam = await prisma.exam.create({
           data: {
-            date: date,
+            date: date as string,
             courseId: id as string,
-            managerId: "fdsf",
           },
         });
 
-        return res.status(200).send(exam);
       }
+
+      return res.status(200).send(exam);
     }
   }
 };
