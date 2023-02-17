@@ -6,7 +6,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const { id } = req.query;
   switch (req.method) {
     case "GET": {
-      const course = await prisma.course.findFirst({
+      const data = await prisma.course.findFirst({
         where: {
           id: id as string,
         },
@@ -26,39 +26,47 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           },
         },
       });
-      return res.status(200).send(course);
+
+      const dateList = new Set();
+
+      data.students.forEach((student: any) =>
+        student.courses.forEach((course: any) =>
+          course.exams.forEach((exam: any) => dateList.add(exam.date))
+        )
+      );
+      console.log(dateList.values());
+      return res.status(200).send({ dates: Array.from(dateList.values()) });
     }
     case "POST": {
-      const {date} = req.body;
+      const { date } = req.body;
       const foundExam = await prisma.exam.findFirst({
-        where:{
+        where: {
           date: date,
-        }
-      })
-      
-      let exam = null;
-      if (foundExam){
-          exam = await prisma.exam.update({
-            where: {
-              id: foundExam.id as string
-            },
-            data: {
-              date: date,
-            }
-          })   
+        },
+      });
 
+      let exam = null;
+      if (foundExam) {
+        exam = await prisma.exam.update({
+          where: {
+            id: foundExam.id as string,
+          },
+          data: {
+            date: date,
+          },
+        });
       } else {
         exam = await prisma.exam.create({
           data: {
             date: date,
             courseId: id as string,
-            managerId: "fdsf"
-          }
-      });
+            managerId: "fdsf",
+          },
+        });
 
-      return res.status(200).send(exam);
+        return res.status(200).send(exam);
       }
-  }
+    }
   }
 };
 
