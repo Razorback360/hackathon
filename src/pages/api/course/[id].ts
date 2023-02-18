@@ -24,12 +24,13 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
               },
             },
           },
+          exams: true
         },
       });
 
       const dateList = new Set();
 
-      data.students.forEach((student: any) =>
+      data?.students.forEach((student: any) =>
         student.courses.forEach((course: any) =>
           course.exams.forEach((exam: any) =>
             dateList.add(`${course.id},${exam.date}`)
@@ -37,7 +38,16 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         )
       );
 
-      return res.status(200).send({ info: Array.from(dateList.values()) });
+      // const course = await prisma.course.findFirst({
+      //   where: {
+      //     id: id as string
+      //   },
+      //   include: {
+      //     exams:true
+      //   }
+      // })
+
+      return res.status(200).send({ dates: Array.from(dateList.values()), courseExams:data?.exams });
     }
     case "POST": {
       const { date } = req.body;
