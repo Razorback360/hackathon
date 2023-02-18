@@ -5,7 +5,7 @@ import Ribbon from "@/components/ribbon";
 export default function App({ Component, pageProps }: AppProps) {
   return (
     <>
-      <Component {...pageProps} />
+      <Component {...pageProps}/>
     </>
   );
 }

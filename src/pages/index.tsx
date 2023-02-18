@@ -14,10 +14,10 @@ function Login() {
   return(
     <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-500 to-teal-300">
       <img src="/Hexagon.png" alt="Background Image" className="w-full h-full object-cover absolute inset-0" />
-      <div className="bg-white p-5 rounded-lg shadow-lg w-full max-w-md">
+      <div className="bg-white p-5 rounded-2xl shadow-2xl w-full max-w-md">
         <img src="/logo.png" alt="KFUPM Logo" className="w-52 h-auto mt-[-24px] mx-auto mb-1" />
         <h1 className="text-2xl font-Georgia text-green-600 mb-4 text-center ">Welcome to EXARMAN</h1>
-        
+
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label htmlFor="email" className="block font-semibold text-gray-600 mb-2">Email</label>
