@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 
-const CourseCard = ({ courseName = "", state = 0 }) => {
+const CourseCard = ({ courseName = "", state = 0, onClick }) => {
   const [description, setDescription] = useState("No exams reserved.");
   const [color, setColor] = useState("#5F5F5FB2");
   const [checked, setChecked] = useState(false);
@@ -27,6 +27,7 @@ const CourseCard = ({ courseName = "", state = 0 }) => {
   return (
     
     <div
+    onClick={onClick}
       className={`rounded-3xl w-[28rem] h-48 relative cursor-pointer m-5  bg-white disabled:pointer-events-none stop course-card ${state === 1
         ? "hover:bg-green-600"
         : state === 0

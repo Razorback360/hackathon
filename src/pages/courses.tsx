@@ -25,7 +25,7 @@ const Home = ({ courses }) => {
 }
 
 export const getServerSideProps = async ({req}) => {
-  const res = await fetch("http://localhost:3000/api/manager/d3e3c973-9ce2-4f58-bb2b-8187a0a6a7dd")
+  const res = await fetch("http://localhost:3000/api/manager/b75fd7ce-97e7-4c4a-a10e-df0adc6dd6dd")
   const courses = await res.json()
 
   return{

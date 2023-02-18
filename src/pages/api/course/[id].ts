@@ -24,6 +24,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
               },
             },
           },
+          name: true,
           exams: true
         },
       });
@@ -32,8 +33,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       data?.students.forEach((student: any) =>
         student.courses.forEach((course: any) =>
-          course.exams.forEach((exam: any) =>
-            dateList.add(`${course.id},${exam.date}`)
+          course.exams.forEach((exam: any) =>{
+            dateList.add(`${course.id},${exam.date}`)}
           )
         )
       );
@@ -47,10 +48,10 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       //   }
       // })
 
-      return res.status(200).send({ dates: Array.from(dateList.values()), courseExams:data?.exams });
+      return res.status(200).send({ dates: Array.from(dateList.values()), courseExams:data?.exams, name:data?.name});
     }
     case "POST": {
-      const { date } = req.body;
+      const { date } = JSON.parse(req.body);
       
       const exam = await prisma.exam.create({
         data: {
@@ -62,8 +63,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       return res.status(200).send(exam);
     }
     case "DELETE": {
-      const { examId } = req.body;
-      
+      const { examId }  = JSON.parse(req.body);
+      console.log(req.body, examId)
       const exam = await prisma.exam.delete({
         where: {
           id: examId as string

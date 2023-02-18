@@ -19,7 +19,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Calendar({ meetings }) {
+export default function Calendar({ meetings, stateSetter, newDate }) {
   let today = startOfToday();
   let [selectedDay, setSelectedDay] = useState(today);
   let [currentMonth, setCurrentMonth] = useState(format(today, "MMM-yyyy"));
@@ -84,7 +84,9 @@ export default function Calendar({ meetings }) {
               >
                 <button
                   type="button"
-                  onClick={() => setSelectedDay(day)}
+                  onClick={() => {setSelectedDay(day)
+                  stateSetter(day.toISOString().split('T')[0])
+                }}
                   className={classNames(
                     isEqual(day, selectedDay) && "text-white",
                     !isEqual(day, selectedDay) &&
