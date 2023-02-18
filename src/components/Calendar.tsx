@@ -42,7 +42,7 @@ export default function Calendar({ meetings, stateSetter, newDate }) {
 
   return (
     <div className="pt-5 w-full md:w-1/4 mb-10 md:ml-10  rounded-2xl shadow-xl mt-10 bg-white overflow-hidden z-50">
-      <div className="p-3">
+      <div className="p-3 justify-center items-center text-center">
         <p>
             Red: Possible conflict <br/>
             Green: Reserved by You <br/>
