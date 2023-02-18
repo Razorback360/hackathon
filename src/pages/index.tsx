@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { EyeIcon, EyeSlashIcon, AtSymbolIcon } from '@heroicons/react/24/outline'
+import Router from 'next/router';
 
 
 function Login() {
@@ -73,6 +74,7 @@ function Login() {
           </div>
           <button
             type="submit"
+            onClick={()=> {Router.push("/courses")}}
             className="sign-in-button w-full py-2 px-4 rounded-lg text-white font-semibold bg-gradient-to-br from-green-500 to-teal-400 focus:outline-none transition transform duration-300 ease-in-out"
           >
             Sign in

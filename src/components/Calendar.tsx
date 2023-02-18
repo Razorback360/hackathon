@@ -113,8 +113,11 @@ export default function Calendar({ meetings }) {
 
                 <div className="w-5 h-1 mx-auto">
                   {meetings.some((meeting) =>
-                    isSameDay(parseISO(meeting.startDatetime), day)
-                  ) && <div className="w-5 h-1 rounded-full bg-sky-500"></div>}
+                    isSameDay(parseISO(meeting.startDatetime), day) && meeting.conflict
+                  ) && <div className={`w-5 h-1 rounded-full bg-red-500`}></div>}
+                  {meetings.some((meeting) =>
+                    isSameDay(parseISO(meeting.startDatetime), day) && !meeting.conflict
+                  ) && <div className={`w-5 h-1 rounded-full bg-green-500`}></div>}
                 </div>
               </div>
             ))}
