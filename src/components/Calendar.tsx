@@ -41,7 +41,7 @@ export default function Calendar({ meetings }) {
   }
 
   return (
-      <div className="pt-5 w-full md:w-1/4 mb-10 md:ml-10  rounded-2xl shadow-xl mt-10 bg-white overflow-hidden">
+      <div className="pt-5 w-full md:w-1/4 mb-10 md:ml-10  rounded-2xl shadow-xl mt-10 bg-white overflow-hidden z-50">
         <div className="max-w-md px-4 mx-auto sm:px-7 md:max-w-4xl md:px-6">
           <div className="flex items-center">
             <h2 className="flex-auto font-semibold text-gray-900">
