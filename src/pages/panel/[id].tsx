@@ -43,7 +43,6 @@ export default function Panel({ data }) {
 
   return (
     <>
-    <Ribbon/>
     <div className="min-h-screen flex md:flex-row flex-col items-center justify-center bg-gradient-to-br from-green-500 to-teal-300 ">
       <img
         src="/Hexagon.png"
