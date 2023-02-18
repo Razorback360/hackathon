@@ -2,6 +2,7 @@ import Calendar from "@/components/Calendar";
 import Exam from "@/components/Exam";
 import { useState } from "react";
 import Router from "next/router";
+import Ribbon from "@/components/ribbon";
 
 export default function Panel({ data }) {
   const [hidden, setHidden] = useState(true)
@@ -25,11 +26,11 @@ export default function Panel({ data }) {
   });
 
   let examCards = []
-  
+  let x = 1;
   courseExams.forEach(exam => {
-    let i = 1;
+    
     examCards.push(
-      <Exam key={exam.id} date={exam.date.split(" ")[0]}  num={i} onClick={() => {
+      <Exam key={exam.id} date={exam.date.split(" ")[0]}  num={x} onClick={() => {
         fetch(`/api/course/${data.id}`,{
           method: "DELETE",
           body: JSON.stringify({"examId":exam.id})
@@ -37,10 +38,12 @@ export default function Panel({ data }) {
         
       }} />
     )
-    i++;
+    x++
   });
 
   return (
+    <>
+    <Ribbon/>
     <div className="min-h-screen flex md:flex-row flex-col items-center justify-center bg-gradient-to-br from-green-500 to-teal-300 ">
       <img
         src="/Hexagon.png"
@@ -90,7 +93,9 @@ export default function Panel({ data }) {
         
       </div>
       <Calendar meetings={meetings} stateSetter={setNewDate} newDate={newDate}></Calendar>
+
     </div>
+    </>
   );
 }
 
