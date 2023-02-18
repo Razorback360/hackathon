@@ -17,8 +17,8 @@ function Login() {
       <div className="login-background w-screen h-screen ">
       <img className='w-full h-full object-cover absolute inset-0' src="/Hexagon.png" alt="Background Image"/>
       <div className="bg-white p-5 rounded-2xl shadow-2xl w-full max-w-md mx-auto ">
-        <img src="/logo.png" alt="KFUPM Logo" className="w-52 h-auto mt-[-24px] mx-auto mb-1" />
-        <p className="text-2xl text-green-600 mb-4 text-center text-4xl">Welcome to Examology</p>
+        <img src="/logo.png" alt="KFUPM Logo" className="w-52 h-auto mt-[-24px] mx-auto mt-5 mb-3" />
+        <p className="text-2xl text-green-600 mb-4 text-center text-4xl">Login</p>
         <form onSubmit={handleLogin}>
           <div className="mb-4">
             <label htmlFor="email" className="block font-semibold text-gray-600 mb-2">Email</label>
